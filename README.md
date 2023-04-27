@@ -1,6 +1,6 @@
 # Design Doc 
 
-## [NOTE] *This WebApp is not responsive ! 125% zoom in chrome is advised*
+## [NOTE] **This WebApp is not responsive ! 125% zoom in chrome is advised**
 
 ##Objectivs
 
@@ -24,8 +24,7 @@ All the objectives were completed successfully
 
 
 ## Short Comings
-1. WebApp is not responsive because for grid system Bootstrap was used 
-
+1. WebApp is not responsive 
 
 ## Development server
 
