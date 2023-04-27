@@ -25,7 +25,7 @@ All the objectives were completed successfully
 
 ## Short Comings
 
-**1. WebApp is not responsive **
+1. WebApp is not responsive 
 
 ## Development server
 
