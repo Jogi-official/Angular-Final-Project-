@@ -1,8 +1,8 @@
 # Design Doc 
 
 ## [NOTE] **This WebApp is not responsive ! 125% zoom in chrome is advised**
-**USERNAME : kminchelle**
-**PASSWORD : 0lelplR**
+### **USERNAME : kminchelle**
+### **PASSWORD : 0lelplR**
 
 
 ##Objectivs
