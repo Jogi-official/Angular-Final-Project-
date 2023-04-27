@@ -1,0 +1,71 @@
+<div class="full-body">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <div class="icon">
+          <img src="assets/images/logo.png" alt="" height="90px" width="90px" />
+        </div>
+
+        <div class="back-img">
+          <img src="assets/images/loginmain.png" alt="" />
+        </div>
+      </div>
+      <div class="col">
+        <hr />
+
+        <div id="login-img">
+          <img
+            src="assets/images/login.png"
+            alt=""
+            height="150px"
+            width="150px"
+          />
+          <h2 class="Heading">Welcome Back !</h2>
+
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="mb-3">
+              <input
+                type="username"
+                [(ngModel)]="username"
+                name="username"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                [(ngModel)]="password"
+                name="password"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div *ngIf="errorMessage">
+              <span class="span-warning">Incorrect Credentials</span>
+            </div>
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-3 rounded"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+
+  <div class="lower-text">
+    <span class="middletext">
+      By clicking “Sign in”, you agree to us processing your personal data in
+      accordance with our Privacy notice, and to the terms of our Acceptable use
+      policy.</span
+    >
+  </div>
+</div>

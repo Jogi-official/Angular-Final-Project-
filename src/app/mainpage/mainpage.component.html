@@ -1,0 +1,193 @@
+<div *ngIf="isLoggedIn" class="conatiner">
+  <div class="navigation">
+    <div class="icon col-span-3">
+      <img src="assets/images/logo.png" alt="" height="80px" />
+      <h1 class="heading">CATALOG.com</h1>
+    </div>
+
+    <form #queryForm="ngForm" (ngSubmit)="onSubmit(queryForm)">
+      <div
+        class="input-search flex col-span-6 justify-center w-1/2 py-2 px-4 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-400"
+      >
+        <input
+          name="search"
+          type="text"
+          id="search"
+          placeholder="Search.."
+          [(ngModel)]="queryData"
+          class="form-control"
+        />
+
+        <button
+          class="bg-blue-500 ml-6 hover:bg-blue-700 text-white py-2 px-4 rounded"
+          type="submit"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+
+    <div class="logout">
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+
+    <div class="rightNav">
+      <img src="{{ userData.image }}" alt="icon" (click)="openDialog()" />
+    </div>
+  </div>
+  <div class="navigation2">
+    <button
+      (click)="getAllProducts()"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      All Products
+    </button>
+
+    <button
+      (click)="getProductButton('tops')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Tops
+    </button>
+
+    <button
+      (click)="getProductButton('smartphones')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Smartphones
+    </button>
+
+    <button
+      (click)="getProductButton('sunglasses')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      SunGlasses
+    </button>
+
+    <button
+      (click)="getProductButton('furniture')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Furniture
+    </button>
+
+    <button
+      (click)="getProductButton('automotive')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Automotive
+    </button>
+
+    <button
+      (click)="getProductButton('motorcycle')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Motorcycle
+    </button>
+
+    <button
+      (click)="getProductButton('skincare')"
+      class="bg bg-orange-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+    >
+      Skincare
+    </button>
+  </div>
+
+  <div *ngIf="dialogBox" class="dialog">
+    <img src="{{ userData.image }}" alt="" />
+
+    <div class="infoConatiner">
+      <div class="diagText"><strong> Id : </strong>{{ userData.id }}</div>
+      <div><strong> Name : </strong> {{ userData.firstName }}</div>
+      <div><strong> Last Name :</strong> {{ userData.lastName }}</div>
+      <div><strong> Gender : </strong> {{ userData.gender }}</div>
+      <div><strong> UserName :</strong> {{ userData.username }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="showLoader" class="loader flex items-center justify-center w-1/2">
+    <img src="assets/images/loader.gif" alt="" />
+  </div>
+
+  <div *ngIf="!showLoader" class="content grid grid-cols-3 gap-4">
+    <div
+      class="col-span-1"
+      *ngFor="
+        let product of productsInfo
+          | paginate
+            : {
+                id: 'foo',
+                itemsPerPage: 12,
+                currentPage: currPage,
+                totalItems: 30
+              };
+        let i = index
+      "
+    >
+      <div class="card" style="width: 18rem">
+        <div *ngIf="isLoading" class="spinner">
+          <img src="assets/images/imgload.gif" alt="Loading ... " />
+        </div>
+        <div *ngIf="!isLoading" class="card-img-top-wrapper">
+          <img src="{{ product.thumbnail }}" class="card-img-top" alt="..." />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">
+            <strong>{{ product.title }}</strong>
+          </h2>
+          <br />
+          <p class="card-text">
+            <strong>Description</strong>
+          </p>
+          <div>
+            <span>{{
+              product.description | slice : 0 : descriptionLimit
+            }}</span>
+            <span class="description-toggle" [hidden]="!showMore[i]">{{
+              product.description
+                | slice : descriptionLimit : product.description.length
+            }}</span>
+            <div>
+              <a
+                href="#"
+                class="show-more-link"
+                (click)="toggleDescription($event, i)"
+                >{{ showMore[i] ? "Show Less.." : "Show More.." }}</a
+              >
+            </div>
+          </div>
+          <br />
+          <p class="card-text"><strong>Price</strong></p>
+          <div>{{ product.price }}$</div>
+          <br />
+          <p class="card-text">
+            <strong>Rating</strong>
+          </p>
+          <div>{{ product.rating }}</div>
+          <br />
+          <p class="card-text"><strong>Stock</strong></p>
+          <div>
+            {{ product.stock }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="noData" class="span-warning lower-text">
+    <img src="assets/images/no_result.gif" alt="" />
+  </div>
+
+  <span class="content lower-text">
+    <pagination-controls
+      class="text-control mt-4"
+      id="foo"
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="currPage = $event"
+    ></pagination-controls>
+    <strong> </strong
+  ></span>
+</div>
+
+<div *ngIf="!isLoggedIn" class="span-warning lower-text">Please Login !</div>

@@ -1,0 +1,39 @@
+.head{
+  position : absolute;
+  margin : 30px auto;
+  left : 470px;
+  top : 20px;
+  text-align: center;
+  width : 250px;
+
+}
+
+.logout-img img{
+    position : relative;
+    height : 450px;
+    left : 300px;
+    top :  70px;
+    margin : auto 50px;
+}
+
+
+.btn{
+  position : absolute;
+  margin-top : 50px;
+  left : 550px;
+}
+
+
+.icon{
+  position: absolute;
+  left : 15px;
+  top : 10px;
+  opacity: 1;
+  background-color: red;
+  z-index: 1;
+
+}
+
+.full-body{
+  background-color : #FFFBF5;
+}
